@@ -1,54 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using static csharp.Quality;
+using static System.Console;
+using static System.Linq.Enumerable;
 namespace csharp
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("OMGHAI!");
+            WriteLine("OMGHAI!");
 
-            IList<Item> Items = new List<Item>{
-                new Item {Name = "+5 Dexterity Vest", SellIn = 10, Quality = new Quality(20)},
-                new AgedBrie {Name = Constants.AgedBrie, SellIn = 2, Quality = Zero},
-                new Item {Name = "Elixir of the Mongoose", SellIn = 5, Quality = new Quality(7)},
-                new SulfurasHandOfRagnaros {Name = Constants.SulfurasHandOfRagnaros, SellIn = 0, Quality = new Quality(80)},
-                new SulfurasHandOfRagnaros {Name = Constants.SulfurasHandOfRagnaros, SellIn = -1, Quality = new Quality(80)},
-                new BackstagePassesToATAFKAL80ETCConcert
-                {
-                    Name = Constants.BackstagePassesToATAFKAL80ETCConcert,
-                    SellIn = 15,
-                    Quality = new Quality(20)
-                },
-                new BackstagePassesToATAFKAL80ETCConcert
-                {
-                    Name = Constants.BackstagePassesToATAFKAL80ETCConcert,
-                    SellIn = 10,
-                    Quality = new Quality(49)
-                },
-                new BackstagePassesToATAFKAL80ETCConcert
-                {
-                    Name = Constants.BackstagePassesToATAFKAL80ETCConcert,
-                    SellIn = 5,
-                    Quality = new Quality(49)
-                },
+            var items = new []{
+                new Item ("+5 Dexterity Vest", 10, new Quality(20)),
+                new AgedBrie(2, Zero),
+                new Item ("Elixir of the Mongoose", 5, new Quality(7)),
+                new SulfurasHandOfRagnaros(0, new Quality(80)),
+                new SulfurasHandOfRagnaros(-1, new Quality(80)),
+                new BackstagePassesToATAFKAL80ETCConcert(15, new Quality(20)),
+                new BackstagePassesToATAFKAL80ETCConcert(10, new Quality(49)),
+                new BackstagePassesToATAFKAL80ETCConcert(5, new Quality(49)),
                 // this conjured item does not work properly yet
-                new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = new Quality(6)}
+                new Item ("Conjured Mana Cake", 3, new Quality(6))
             };
 
-            var app = new GildedRose(Items);
+            var app = new GildedRose(items);
 
-
-            for (var i = 0; i < 31; i++)
+            
+            foreach (var i in Range(0, 31))
             {
-                Console.WriteLine("-------- day " + i + " --------");
-                Console.WriteLine("name, sellIn, quality");
-                for (var j = 0; j < Items.Count; j++)
+                WriteLine($"-------- day {i} --------");
+                WriteLine("name, sellIn, quality");
+                foreach (var item in items)
                 {
-                    Console.WriteLine(Items[j]);
+                    WriteLine(item);
                 }
-                Console.WriteLine("");
+                WriteLine(string.Empty);
                 app.UpdateQuality();
             }
         }

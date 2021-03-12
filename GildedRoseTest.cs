@@ -10,7 +10,7 @@ namespace csharp
         public void foo()
         {
             Assert.Pass();
-            IList<Item> Items = new List<Item> { new Item { Name = "foo", SellIn = 0, Quality = new Quality(0) } };
+            IList<Item> Items = new List<Item> { new Item ("foo", 0, Quality.Zero ) };
             GildedRose app = new GildedRose(Items);
             app.UpdateQuality();
             Assert.AreEqual("fixme", Items[0].Name);

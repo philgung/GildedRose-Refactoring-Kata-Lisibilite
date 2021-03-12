@@ -64,7 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgedBrie.cs" />
     <Compile Include="ApprovalTest.cs" />
+    <Compile Include="BackstagePassesToATAFKAL80ETCConcert.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="GildedRose.cs" />
     <Compile Include="GildedRoseTest.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quality.cs" />
+    <Compile Include="SulfurasHandOfRagnaros.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

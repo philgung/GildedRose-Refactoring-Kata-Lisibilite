@@ -2,12 +2,16 @@
 {
     public class Item
     {
-        protected const int MaxQuality = 50;
+        public string Name { get; }
+        protected int SellIn;
+        protected Quality Quality;
 
-        public string Name { get; set; }
-        public int SellIn { get; set; }
-        public Quality Quality { get; set; }
-
+        public Item(string name, int sellIn, Quality quality)
+        {
+            Name = name;
+            SellIn = sellIn;
+            Quality = quality;
+        }
         public override string ToString() => $"{Name}, {SellIn}, {Quality}";
 
         protected void DecrementSellIn()
@@ -33,50 +37,6 @@
             {
                 DecrementQuality();
             }
-        }
-    }
-
-    public class AgedBrie : Item
-    {
-        internal override void UpdateQuality()
-        {
-            IncrementQuality();
-            DecrementSellIn();
-            if (SellIn < 0)
-            {
-                IncrementQuality();
-            }
-        }
-    }
-
-    public class BackstagePassesToATAFKAL80ETCConcert : Item
-    {
-        internal override void UpdateQuality()
-        {
-            IncrementQuality();
-
-            if (SellIn < 11)
-            {
-                IncrementQuality();
-            }
-
-            if (SellIn < 6)
-            {
-                IncrementQuality();
-            }
-
-            DecrementSellIn();
-            if (SellIn < 0)
-            {
-                Quality = Quality.Reset();
-            }
-        }
-    }
-
-    public class SulfurasHandOfRagnaros : Item
-    {
-        internal override void UpdateQuality()
-        {
         }
     }
 }

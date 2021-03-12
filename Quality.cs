@@ -11,9 +11,9 @@
 
         public Quality(int quality)
         {
-            if (quality <= MinQuality)
+            if (quality < MinQuality)
             {
-                quality = MinQuality;
+                this.quality = MinQuality;
             }            
             else
             {

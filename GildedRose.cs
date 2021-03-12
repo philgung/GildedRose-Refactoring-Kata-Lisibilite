@@ -12,9 +12,8 @@ namespace csharp
 
         public void UpdateQuality()
         {
-            for (var i = 0; i < Items.Count; i++)
+            foreach (var current in Items)
             {
-                var current = Items[i];
                 current.UpdateQuality();
             }
         }
