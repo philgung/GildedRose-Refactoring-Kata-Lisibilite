@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
-using System.Collections.Generic;
-
+﻿using FluentAssertions;
+using NUnit.Framework;
+using static csharp.Quality;
 namespace csharp
 {
     [TestFixture]
@@ -10,10 +10,10 @@ namespace csharp
         public void foo()
         {
             Assert.Pass();
-            IList<Item> Items = new List<Item> { new Item ("foo", 0, Quality.Zero ) };
-            GildedRose app = new GildedRose(Items);
+            var Items = new[] { new Item("foo", new SellIn(0), Zero) };
+            var app = new GildedRose(Items);
             app.UpdateQuality();
-            Assert.AreEqual("fixme", Items[0].Name);
+            Items[0].Name.Should().Be("fixme");
         }
     }
 }

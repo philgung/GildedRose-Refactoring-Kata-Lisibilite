@@ -2,6 +2,14 @@
 {
     public class Quality
     {
+
+//        	- Once the sell by date has passed, Quality degrades twice as fast
+
+
+//We have recently signed a supplier of conjured items.This requires an update to our system:
+
+//	- "Conjured" items degrade in Quality twice as fast as normal items
+
         private const int MaxQuality = 50;
         private const int MinQuality = 0;
 
@@ -11,20 +19,16 @@
 
         public Quality(int quality)
         {
-            if (quality < MinQuality)
-            {
-                this.quality = MinQuality;
-            }            
-            else
-            {
-                this.quality = quality;
-            }
-
-
+            this.quality = IsNegative(quality) ?
+                                MinQuality :
+                                quality;
         }
-        public Quality Decrement() => new Quality(quality - 1);
 
-        public Quality Increment()
+        private static bool IsNegative(int quality) => quality < MinQuality;
+
+        public Quality Degrade() => new Quality(quality - 1);
+
+        public Quality Increase()
         {
             int newQuality = quality + 1;
             if (newQuality > MaxQuality)
@@ -34,7 +38,6 @@
             return new Quality(newQuality);
         }
 
-        public Quality Reset() => Zero;
         public override string ToString() => quality.ToString();
     }
 }

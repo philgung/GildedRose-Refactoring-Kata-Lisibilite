@@ -2,17 +2,20 @@
 {
     public class AgedBrie : Item
     {
-        public AgedBrie(int sellIn, Quality quality) : base(Constants.AgedBrie, sellIn, quality)
+        public AgedBrie(SellIn sellIn, Quality quality) : base(Constants.AgedBrie, sellIn, quality)
         {
         }
 
         internal override void UpdateQuality()
         {
-            IncrementQuality();
-            DecrementSellIn();
-            if (SellIn < 0)
+            //	- "Aged Brie" actually increases in Quality the older it gets
+            //	- The Quality of an item is never more than 50
+
+            IncreaseQuality();
+            DegradeSellIn();
+            if (SellIn.IsNegatif)
             {
-                IncrementQuality();
+                IncreaseQuality();
             }
         }
     }
