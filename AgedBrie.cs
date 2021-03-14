@@ -8,15 +8,17 @@
 
         internal override void UpdateQuality()
         {
-            //	- "Aged Brie" actually increases in Quality the older it gets
-            //	- The Quality of an item is never more than 50
+            SellInValueApproaches();
 
-            IncreaseQuality();
-            DegradeSellIn();
-            if (SellIn.IsNegatif)
+            if (TheSellByDateHasPassed())
+            {
+                QualityIncreaseTwice();
+            }
+            else
             {
                 IncreaseQuality();
+
             }
-        }
+        }        
     }
 }

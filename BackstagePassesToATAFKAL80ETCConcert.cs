@@ -1,40 +1,48 @@
 ﻿using static csharp.Quality;
 namespace csharp
 {
-    public class BackstagePassesToATAFKAL80ETCConcert : Item
+    public class BackstagePasses : Item
     {
-        public BackstagePassesToATAFKAL80ETCConcert(SellIn sellIn, Quality quality) : base(Constants.BackstagePassesToATAFKAL80ETCConcert, sellIn, quality)
+        public BackstagePasses(string concertName, SellIn sellIn, Quality quality) : 
+            base($"{Constants.BackstagePasses} to a {concertName} concert", sellIn, quality)
         {
         }
 
         internal override void UpdateQuality()
         {
             //	- "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
-            //        Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+            //        Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less
+            SellInValueApproaches();
 
             IncreaseQuality();
 
-            if (SellIn.IsSmallerThan(11))
+            if (ThereAre5DaysLeftBeforeConcert())
             {
                 IncreaseQuality();
             }
 
-            if (SellIn.IsSmallerThan(6))
+            if (ThereAre10DaysLeftBeforeConcert())
             {
                 IncreaseQuality();
             }
 
-            DegradeSellIn();
             if (ConcertIsOver())
             {
                 QualityDropsToZero();
             }
         }
 
-        private bool ConcertIsOver()
+        private bool ThereAre5DaysLeftBeforeConcert()
         {
-            return SellIn.IsNegatif;
+            return SellIn.IsSmallerThan(5);
         }
+
+        private bool ThereAre10DaysLeftBeforeConcert()
+        {
+            return SellIn.IsSmallerThan(10);
+        }
+
+        private bool ConcertIsOver() => TheSellByDateHasPassed();
 
         private void QualityDropsToZero()
         {

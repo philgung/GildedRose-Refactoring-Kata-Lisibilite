@@ -15,9 +15,9 @@ namespace csharp
                 new Item("Elixir of the Mongoose", new SellIn(5), new Quality(7)),
                 new SulfurasHandOfRagnaros(SellIn.Zero, new Quality(80)),
                 new SulfurasHandOfRagnaros(new SellIn(-1), new Quality(80)),
-                new BackstagePassesToATAFKAL80ETCConcert(new SellIn(15), new Quality(20)),
-                new BackstagePassesToATAFKAL80ETCConcert(new SellIn(10), new Quality(49)),
-                new BackstagePassesToATAFKAL80ETCConcert(new SellIn(5), new Quality(49)),
+                new BackstagePasses("TAFKAL80ETC", new SellIn(15), new Quality(20)),
+                new BackstagePasses("TAFKAL80ETC", new SellIn(10), new Quality(49)),
+                new BackstagePasses("TAFKAL80ETC", new SellIn(5), new Quality(49)),
                 // this conjured item does not work properly yet
                 new Item("Conjured Mana Cake", new SellIn(3), new Quality(6))
             };

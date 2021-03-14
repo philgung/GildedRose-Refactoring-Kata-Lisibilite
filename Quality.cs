@@ -3,9 +3,6 @@
     public class Quality
     {
 
-//        	- Once the sell by date has passed, Quality degrades twice as fast
-
-
 //We have recently signed a supplier of conjured items.This requires an update to our system:
 
 //	- "Conjured" items degrade in Quality twice as fast as normal items
@@ -26,11 +23,13 @@
 
         private static bool IsNegative(int quality) => quality < MinQuality;
 
-        public Quality Degrade() => new Quality(quality - 1);
+        public Quality Degrade(int value = 1) => new Quality(quality - value);
 
-        public Quality Increase()
+        public Quality Increase(int value = 1)
         {
-            int newQuality = quality + 1;
+            //	- The Quality of an item is never more than 50
+
+            int newQuality = quality + value;
             if (newQuality > MaxQuality)
             {
                 return this;

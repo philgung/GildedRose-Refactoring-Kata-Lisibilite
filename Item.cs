@@ -1,4 +1,6 @@
-﻿namespace csharp
+﻿using System;
+
+namespace csharp
 {
     public class Item
     {
@@ -14,16 +16,26 @@
         }
         internal virtual void UpdateQuality()
         {
-            DegradeQuality();
-            DegradeSellIn();
-            if (SellIn.IsNegatif)
+            SellInValueApproaches();
+
+            if (TheSellByDateHasPassed())
+            {
+                QualityDegradesTwice();
+            }
+            else
             {
                 DegradeQuality();
             }
         }
+
+        
         public override string ToString() => $"{Name}, {SellIn}, {Quality}";
 
-        protected void DegradeSellIn()
+        private void QualityDegradesTwice()
+        {
+            Quality = Quality.Degrade(2);
+        }
+        protected void SellInValueApproaches()
         {
             SellIn = SellIn.Decrement();
         }
@@ -37,6 +49,15 @@
         {
             Quality = Quality.Increase();
         }
-        
+
+        protected bool TheSellByDateHasPassed()
+        {
+            return SellIn.IsNegatif;
+        }
+        protected void QualityIncreaseTwice()
+        {
+            Quality = Quality.Increase(2);
+        }
+
     }
 }
