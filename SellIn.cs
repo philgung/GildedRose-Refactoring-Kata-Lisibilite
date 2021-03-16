@@ -13,10 +13,7 @@
 
         internal bool IsSmallerThan(int value) => _sellIn < value;
 
-        internal SellIn Decrement()
-        {
-            return new SellIn(_sellIn - 1);
-        }
+        internal SellIn Decrement() => new SellIn(_sellIn - 1);
 
         public override string ToString() => _sellIn.ToString();
     }

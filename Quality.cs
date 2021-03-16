@@ -25,17 +25,17 @@
 
         public Quality Degrade(int value = 1) => new Quality(quality - value);
 
-        public Quality Increase(int value = 1)
+        public Quality Increase()
         {
-            //	- The Quality of an item is never more than 50
-
-            int newQuality = quality + value;
-            if (newQuality > MaxQuality)
+            var newQuality = quality + 1;
+            if (IsMoreThanMaxQuality(newQuality))
             {
                 return this;
             }
             return new Quality(newQuality);
         }
+
+        private static bool IsMoreThanMaxQuality(int newQuality) => newQuality > MaxQuality;
 
         public override string ToString() => quality.ToString();
     }

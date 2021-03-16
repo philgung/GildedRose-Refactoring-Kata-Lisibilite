@@ -10,18 +10,17 @@ namespace csharp
 
         internal override void UpdateQuality()
         {
-            //	- "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
-            //        Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less
             SellInValueApproaches();
-
-            IncreaseQuality();
 
             if (ThereAre5DaysLeftBeforeConcert())
             {
-                IncreaseQuality();
+                QualityIncreasesBy3();
             }
-
-            if (ThereAre10DaysLeftBeforeConcert())
+            else if (ThereAre10DaysLeftBeforeConcert())
+            {
+                QualityIncreaseTwice();
+            }
+            else
             {
                 IncreaseQuality();
             }
@@ -32,15 +31,15 @@ namespace csharp
             }
         }
 
-        private bool ThereAre5DaysLeftBeforeConcert()
+        private void QualityIncreasesBy3()
         {
-            return SellIn.IsSmallerThan(5);
+            QualityIncreaseTwice();
+            IncreaseQuality();
         }
 
-        private bool ThereAre10DaysLeftBeforeConcert()
-        {
-            return SellIn.IsSmallerThan(10);
-        }
+        private bool ThereAre5DaysLeftBeforeConcert() => SellIn.IsSmallerThan(5);
+
+        private bool ThereAre10DaysLeftBeforeConcert() => SellIn.IsSmallerThan(10);
 
         private bool ConcertIsOver() => TheSellByDateHasPassed();
 

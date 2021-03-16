@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace csharp
+﻿namespace csharp
 {
     public class Item
     {
@@ -50,13 +48,11 @@ namespace csharp
             Quality = Quality.Increase();
         }
 
-        protected bool TheSellByDateHasPassed()
-        {
-            return SellIn.IsNegatif;
-        }
+        protected bool TheSellByDateHasPassed() => SellIn.IsNegatif;
         protected void QualityIncreaseTwice()
         {
-            Quality = Quality.Increase(2);
+            IncreaseQuality();
+            IncreaseQuality();
         }
 
     }
